@@ -1,0 +1,58 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+interface Drink {
+  name: String!
+}
+
+type Flavor {
+  id: ID!
+  name: String!
+  coffees: [Coffee!]!
+}
+
+"""coffee model"""
+type Coffee implements Drink {
+  name: String!
+
+  """bu unique hisoblanadi"""
+  id: ID!
+  brand: String!
+  flavors: [Flavor!]!
+  createdAt: Date
+}
+
+type Tea implements Drink {
+  name: String!
+}
+
+"""salom bu classni nima uchun yozilayotganini umuman tushunmadim"""
+scalar Date
+
+type Query {
+  drinks: [Drink!]!
+  coffees: [Coffee!]!
+  coffee(id: ID!): Coffee!
+}
+
+type Mutation {
+  createCoffee(createCoffeeInput: CreateCoffeeInput!): Coffee
+  updateCoffee(id: Float!, updateCoffeeInput: UpdateCoffeeInput!): Coffee
+  delete(id: Float!): Coffee
+}
+
+"""inputType uchun """
+input CreateCoffeeInput {
+  """yangi coffee nomi"""
+  name: String!
+  brand: String!
+  flavors: [String!]!
+}
+
+input UpdateCoffeeInput {
+  """yangi coffee nomi"""
+  name: String
+  brand: String
+  flavors: [String!]
+}
