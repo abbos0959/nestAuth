@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import { Flavor } from '../flavor.entity/flavor.entity';
 import { Drink } from 'src/common/interfaces/drink.interface/drink.interface';
+import { CoffeType } from 'src/common/enums/coffe-type-enum';
 
 @Entity()
 @ObjectType({ description: 'coffee model', implements: () => Drink })
@@ -27,4 +28,6 @@ export class Coffee implements Drink {
   @ManyToMany(() => Flavor, (flavor) => flavor.coffees, { cascade: true })
   flavors?: Flavor[];
   createdAt?: Date;
+  @Column({ nullable: true })
+  type: CoffeType;
 }
